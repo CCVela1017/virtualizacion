@@ -1,0 +1,12 @@
+service:
+  type: LoadBalancer
+  annotations:
+    metallb.io/loadBalancerIPs: 192.168.49.240
+ingressClass:
+  enabled: true
+  isDefaultClass: true
+providers:
+  kubernetesIngress:
+    enabled: true
+  kubernetesCRD:
+    enabled: true

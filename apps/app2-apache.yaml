@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app2-apache
+  namespace: parcial-ceva
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { app: app2-apache }
+  template:
+    metadata:
+      labels: { app: app2-apache }
+    spec:
+      containers:
+        - name: httpd
+          image: httpd:alpine
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app2-apache
+  namespace: parcial-ceva
+spec:
+  selector: { app: app2-apache }
+  ports:
+    - port: 80
+      targetPort: 80
+---

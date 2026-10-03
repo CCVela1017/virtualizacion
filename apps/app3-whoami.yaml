@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app3-whoami
+  namespace: parcial-ceva
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { app: app3-whoami }
+  template:
+    metadata:
+      labels: { app: app3-whoami }
+    spec:
+      containers:
+        - name: whoami
+          image: traefik/whoami
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app3-whoami
+  namespace: parcial-ceva
+spec:
+  selector: { app: app3-whoami }
+  ports:
+    - port: 80
+      targetPort: 80
+---

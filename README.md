@@ -40,6 +40,40 @@ spec:
 Comprobacion y aplicacion:
 ![](images/ip-definition.png)
 
+## Paso 2: Configuracion Traefik
 
+* Configuracion de Traefik
 
+traefik/traefik-values.yaml
+```
+service:
+  type: LoadBalancer
+  annotations:
+    metallb.io/loadBalancerIPs: 192.168.49.240
+ingressClass:
+  enabled: true
+  isDefaultClass: true
+providers:
+  kubernetesIngress:
+    enabled: true
+  kubernetesCRD:
+    enabled: true
+```
 
+* Instalacion y comprobacion
+
+![](images/traefik-install.png)
+
+## Paso 3: Configuracion de namespace "parcial-ceva"
+
+Servicios:
+* nginx *(apps/app1-nginx.yaml)*
+* apache *(apps/app2-apache.yaml)*
+* whoami *(apps/app3-whoami.yaml)*
+* http-echo *(apps/app4-http-echo.yaml)*
+
+### Aplicar los servicios:
+
+![](images/services-1.png)
+
+![](images/services-2.png)
