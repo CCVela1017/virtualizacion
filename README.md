@@ -93,3 +93,19 @@ Servicios:
 
 ### Verificación de dominios con port-forwarding
 
+```
+> kubectl port-forward -n traefik svc/traefik 8080:80 & sleep 2
+```
+
+* nginx
+![](images/nginx.png)
+* apache
+![](images/apache.png)
+* whoami
+![](images/whoami.png)
+* http-echo
+![](images/echo.png)
+
+Llamada a Nginx desde Ubuntu con "curl"
+
+![](images/curl.png)
