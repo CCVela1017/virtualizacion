@@ -1,0 +1,75 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app1-nginx
+  namespace: parcial-ceva
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: app1.parcial.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app1-nginx
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app2-apache
+  namespace: parcial-ceva
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: app2.parcial.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app2-apache
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app3-whoami
+  namespace: parcial-ceva
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: app3.parcial.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app3-whoami
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app4-echo
+  namespace: parcial-ceva
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: app4.parcial.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app4-echo
+                port:
+                  number: 80

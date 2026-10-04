@@ -77,3 +77,19 @@ Servicios:
 ![](images/services-1.png)
 
 ![](images/services-2.png)
+
+
+## Paso 4: Configuracion de Ingress
+
+**Ruta Ingress:** apps/ingress.yaml
+
+![](images/ingress-config.png)
+
+* Escritura en /etc/hosts
+
+![](images/hosts.png)
+
+## Paso 5: Pruebas finales
+
+### Verificación de dominios con port-forwarding
+
