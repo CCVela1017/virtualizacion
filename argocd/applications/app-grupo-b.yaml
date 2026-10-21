@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: parcial-grupo-b
+  namespace: argocd-ceva
+spec:
+  project: default
+  source:
+    repoURL: $REPO_URL
+    targetRevision: assessment-06
+    path: apps/grupo-b
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: parcial-ceva
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
