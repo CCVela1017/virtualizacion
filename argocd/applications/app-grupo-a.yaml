@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: "${REPO_URL}"
+    repoURL: "https://github.com/CCVela1017/virtualizacion.git"
     targetRevision: assessment-06
     path: apps/grupo-a
   destination:
