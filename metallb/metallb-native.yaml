@@ -2115,7 +2115,7 @@ spec:
     metadata:
       annotations:
         prometheus.io/port: "9120"
-        prometheus.io/scrape: "true"
+        prometheus.io/scrape: "false"
       labels:
         app: metallb
         component: controller
@@ -2200,7 +2200,7 @@ spec:
     metadata:
       annotations:
         prometheus.io/port: "9120"
-        prometheus.io/scrape: "true"
+        prometheus.io/scrape: "false"
       labels:
         app: metallb
         component: speaker
