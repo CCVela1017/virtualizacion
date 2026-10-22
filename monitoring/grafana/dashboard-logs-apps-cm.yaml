@@ -1,0 +1,86 @@
+apiVersion: v1
+data:
+  logs-apps.json: |-
+    {
+      "uid": "logs-apps",
+      "title": "Logs de las aplicaciones",
+      "tags": ["loki", "logs"],
+      "schemaVersion": 39,
+      "version": 1,
+      "editable": true,
+      "refresh": "10s",
+      "time": { "from": "now-30m", "to": "now" },
+      "panels": [
+        {
+          "id": 1,
+          "type": "timeseries",
+          "title": "Líneas de log por app (por minuto)",
+          "datasource": { "type": "loki", "uid": "loki" },
+          "gridPos": { "x": 0, "y": 0, "w": 24, "h": 7 },
+          "targets": [
+            { "refId": "A", "expr": "sum by (app) (count_over_time({namespace=\"parcial-ceva\"} [1m]))", "legendFormat": "{{app}}" }
+          ]
+        },
+        {
+          "id": 2,
+          "type": "logs",
+          "title": "app1-nginx",
+          "datasource": { "type": "loki", "uid": "loki" },
+          "gridPos": { "x": 0, "y": 7, "w": 12, "h": 8 },
+          "options": { "showTime": true, "wrapLogMessage": true, "sortOrder": "Descending", "enableLogDetails": true },
+          "targets": [
+            { "refId": "A", "expr": "{namespace=\"parcial-ceva\", app=\"app1-nginx\"}" }
+          ]
+        },
+        {
+          "id": 3,
+          "type": "logs",
+          "title": "app2-apache",
+          "datasource": { "type": "loki", "uid": "loki" },
+          "gridPos": { "x": 12, "y": 7, "w": 12, "h": 8 },
+          "options": { "showTime": true, "wrapLogMessage": true, "sortOrder": "Descending", "enableLogDetails": true },
+          "targets": [
+            { "refId": "A", "expr": "{namespace=\"parcial-ceva\", app=\"app2-apache\"}" }
+          ]
+        },
+        {
+          "id": 4,
+          "type": "logs",
+          "title": "app3-whoami",
+          "datasource": { "type": "loki", "uid": "loki" },
+          "gridPos": { "x": 0, "y": 15, "w": 12, "h": 8 },
+          "options": { "showTime": true, "wrapLogMessage": true, "sortOrder": "Descending", "enableLogDetails": true },
+          "targets": [
+            { "refId": "A", "expr": "{namespace=\"parcial-ceva\", app=\"app3-whoami\"}" }
+          ]
+        },
+        {
+          "id": 5,
+          "type": "logs",
+          "title": "app4-echo",
+          "datasource": { "type": "loki", "uid": "loki" },
+          "gridPos": { "x": 12, "y": 15, "w": 12, "h": 8 },
+          "options": { "showTime": true, "wrapLogMessage": true, "sortOrder": "Descending", "enableLogDetails": true },
+          "targets": [
+            { "refId": "A", "expr": "{namespace=\"parcial-ceva\", app=\"app4-echo\"}" }
+          ]
+        },
+        {
+          "id": 6,
+          "type": "logs",
+          "title": "Traefik",
+          "datasource": { "type": "loki", "uid": "loki" },
+          "gridPos": { "x": 0, "y": 23, "w": 24, "h": 8 },
+          "options": { "showTime": true, "wrapLogMessage": true, "sortOrder": "Descending", "enableLogDetails": true },
+          "targets": [
+            { "refId": "A", "expr": "{namespace=\"traefik\"}" }
+          ]
+        }
+      ]
+    }
+kind: ConfigMap
+metadata:
+  labels:
+    grafana_dashboard: "1"
+  name: grafana-dashboard-logs-apps
+  namespace: monitoring-ceva
